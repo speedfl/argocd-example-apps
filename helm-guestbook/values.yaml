@@ -10,8 +10,11 @@ image:
   pullPolicy: IfNotPresent
 
 service:
+  enabled: true
   type: ClusterIP
   port: 80
+  annotations: 
+    argocd.argoproj.io/sync-options: Prune=false
 
 ingress:
   enabled: false

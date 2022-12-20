@@ -1,3 +1,4 @@
+{{- if .Values.service.enabled }}
 apiVersion: v1
 kind: Service
 metadata:
@@ -7,6 +8,10 @@ metadata:
     chart: {{ template "helm-guestbook.chart" . }}
     release: {{ .Release.Name }}
     heritage: {{ .Release.Service }}
+{{- if .Values.service.annotations }}
+  annotations:
+{{ .Values.service.annotations | toYaml | indent 4}}
+{{- end  }}
 spec:
   type: {{ .Values.service.type }}
   ports:
@@ -17,3 +22,4 @@ spec:
   selector:
     app: {{ template "helm-guestbook.name" . }}
     release: {{ .Release.Name }}
+{{- end  }}
