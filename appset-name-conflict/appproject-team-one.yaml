@@ -21,6 +21,6 @@ spec:
     - p, proj:team-one:read-write, applications, update, team-one/*, allow
     - p, proj:team-one:read-write, applications, sync, team-one/*, allow
   sourceNamespaces:
-  - argocd-e2e-external
+  - argocd-team-one
   sourceRepos:
   - '*'
