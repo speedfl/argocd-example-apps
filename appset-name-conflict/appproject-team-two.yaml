@@ -1,0 +1,26 @@
+apiVersion: argoproj.io/v1alpha1
+kind: AppProject
+metadata:
+  name: team-two
+  namespace: argocd
+spec:
+  destinations:
+  - namespace: team-two
+    server: https://kubernetes.default.svc
+  namespaceResourceWhitelist:
+  - group: '*'
+    kind: '*'
+  roles:
+  - description: Read-only privileges to team-two
+    groups:
+    - georges
+    name: read-write
+    policies:
+    - p, proj:team-two:read-write, applications, get, team-two/*, allow
+    - p, proj:team-two:read-write, applications, delete, team-two/*, allow
+    - p, proj:team-two:read-write, applications, update, team-two/*, allow
+    - p, proj:team-two:read-write, applications, sync, team-two/*, allow
+  sourceNamespaces:
+  - argocd-e2e-external-2
+  sourceRepos:
+  - '*'

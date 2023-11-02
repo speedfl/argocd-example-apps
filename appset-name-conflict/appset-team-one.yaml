@@ -1,0 +1,23 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: guestbook
+  namespace: argocd-e2e-external
+spec:
+  goTemplate: true
+  generators:
+  - list:
+      elements:
+        - id: one
+  template:
+    metadata:
+      name: 'team-one-{{ .id }}-guestbook'
+    spec:
+      project: "team-one"
+      source:
+        repoURL: https://github.com/speedfl/argocd-example-apps.git
+        targetRevision: feature/appset-name-conflict
+        path: guestbook
+      destination:
+        server: https://kubernetes.default.svc
+        namespace: team-one

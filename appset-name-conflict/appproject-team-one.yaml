@@ -1,0 +1,26 @@
+apiVersion: argoproj.io/v1alpha1
+kind: AppProject
+metadata:
+  name: team-one
+  namespace: argocd
+spec:
+  destinations:
+  - namespace: team-one
+    server: https://kubernetes.default.svc
+  namespaceResourceWhitelist:
+  - group: '*'
+    kind: '*'
+  roles:
+  - description: Read-only privileges to team-one
+    groups:
+    - alice
+    name: read-write
+    policies:
+    - p, proj:team-one:read-write, applications, get, team-one/*, allow
+    - p, proj:team-one:read-write, applications, delete, team-one/*, allow
+    - p, proj:team-one:read-write, applications, update, team-one/*, allow
+    - p, proj:team-one:read-write, applications, sync, team-one/*, allow
+  sourceNamespaces:
+  - argocd-e2e-external
+  sourceRepos:
+  - '*'
