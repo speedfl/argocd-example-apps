@@ -2,7 +2,7 @@ apiVersion: argoproj.io/v1alpha1
 kind: AppProject
 metadata:
   name: team-one
-  namespace: argocd
+  namespace: argocd-e2e
 spec:
   destinations:
   - namespace: team-one

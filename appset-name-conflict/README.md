@@ -13,5 +13,6 @@ ARGOCD_APPLICATIONSET_CONTROLLER_NAMESPACES=argocd-team-one,argocd-team-two
 ARGOCD_APPLICATIONSET_CONTROLLER_ALLOWED_SCM_PROVIDERS=https://github.com # Or whatever
 ```
 
+3. Start `make start-local`
 3. Create both ApplicationSet.
 4. Look at the applicationset logs. It must reconcile in loop
